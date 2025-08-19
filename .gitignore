@@ -1,2 +1,10 @@
-# Ignore all files ending with .log
-*.env
+# Variáveis de ambiente
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+
