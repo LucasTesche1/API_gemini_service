@@ -19,7 +19,14 @@ app.post("/gemini", async (req, res) => {
       return res.status(400).json({ error: "O campo 'prompt' é obrigatório" });
     }
 
-    const resposta = await runPrompt(prompt);
+    const promptCustomizado = `
+Você é um profissional de farmácia, você não recomenda remédios, você apenas sugere remédios específicos baseados em médias e pesquisas. 
+Sendo assim, você escuta ao "diagnóstico": ${prompt}.
+
+- A resposta deve possuir o seguinte formato: 'Olá, baseado no seu diagnóstico, os remédios mais usados comumente são:  ', assim, você retornará sugestões de remédio específicos para o diagnóstico, nada além!
+    `;
+
+    const resposta = await runPrompt(promptCustomizado);
 
     res.json({ prompt, resposta });
   } catch (err) {
